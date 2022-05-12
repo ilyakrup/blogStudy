@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Категории</h1>
+            <h1 class="m-0">Добавление категории</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -25,33 +25,18 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-2">
-            <a href="{{route('admin.category.create')}}" class="btn btn-block btn-primary">Добавить</a>
-          </div>
-        </div>
-        <div class="row">
-          <div class="pt-3 col-6">
-            <div class="card">
-              <div class="card-body table-responsive p-0">
-              <table class="table table-hover text-nowrap">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Название</th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach ($categories as $category)
-                <tr>
-                  <td>{{ $category->id }}</td> 
-                  <td>{{ $category->title}}</td>   
-                </tr>             
-                @endforeach
-              </tbody>
-              </table>
+          <div class="pt-3 col-12">
+            <form method="POST" action="{{route('admin.category.store')}}" class="w-25">
+              @csrf
+              <div class="form-group">
+                <label >Название</label>
+                <input type="text" class="form-control" name="title" placeholder="Назваение категории">
+                @error('title')
+                    <div class="text-danger">Это поле обязательно должно быть заполнен</div>
+                @enderror  
               </div>
-              
-              </div>
+                <input type="submit" class="btn btn-primary" value="Добавть">
+            </form>
           </div>
         </div>
         <!-- /.row -->
